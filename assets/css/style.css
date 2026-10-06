@@ -48,9 +48,11 @@
 
   /*
     Cor de estado
-    erro  campos inválidos
+    erro        campos inválidos
+    erro-suave  fundo dos alertas de erro
   */
   --cor-erro: #b3261e;
+  --cor-erro-suave: #fbe9e7;
 
   /*
     Tipografia
@@ -98,6 +100,16 @@
   --raio: 3px;
   --largura: 1000px;
   --leitura: 68ch;
+
+  /*
+    Efeitos e sobreposição
+    transicao     duração/curva das transições de interface
+    sombra-botao  realce ao passar o mouse nos botões
+    sobreposicao  véu escuro atrás do modal
+  */
+  --transicao: 0.25s ease;
+  --sombra-botao: 0 4px 12px rgba(15, 61, 46, 0.3);
+  --cor-sobreposicao: rgba(15, 61, 46, 0.6);
 
   /*
     Grid
@@ -630,12 +642,6 @@ select:user-valid {
   border-color: var(--cor-primaria);
 }
 
-#grupo-responsavel > p:first-of-type {
-  padding: var(--esp-2) var(--esp-4);
-  border-left: 4px solid var(--cor-secundaria);
-  background: var(--cor-secundaria-suave);
-}
-
 button {
   width: 100%;
   font: inherit;
@@ -702,6 +708,178 @@ footer > p:last-child {
   border-top: 1px solid var(--cor-linha-invertida);
   max-width: none;
   font-size: var(--texto-pequeno);
+}
+
+/*
+  COMPONENTES DE FEEDBACK
+*/
+
+/*
+  Badges (etiquetas dos projetos)
+*/
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+  margin: var(--esp-2) 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: var(--esp-1) var(--esp-2);
+  font-size: var(--texto-pequeno);
+  font-weight: var(--peso-medio);
+  line-height: 1.2;
+  border-radius: var(--raio);
+  border: 1px solid var(--cor-borda-campo);
+  color: var(--cor-texto-suave);
+  background: var(--cor-fundo);
+}
+
+.badge--online {
+  background: var(--cor-primaria-suave);
+  border-color: var(--cor-primaria-escura);
+  color: var(--cor-primaria-escura);
+}
+
+.badge--presencial {
+  background: var(--cor-secundaria-suave);
+  border-color: var(--cor-secundaria);
+  color: var(--cor-texto);
+}
+
+.badge--hibrido {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: var(--cor-fundo);
+}
+
+/*
+  Alertas (mensagens de feedback, principalmente no formulário)
+*/
+.alerta {
+  display: flex;
+  gap: var(--esp-3);
+  align-items: flex-start;
+  padding: var(--esp-3) var(--esp-4);
+  border: 1px solid;
+  border-left-width: 4px;
+  border-radius: var(--raio);
+  max-width: none;
+  margin: 0;
+}
+
+.alerta::before {
+  font-weight: var(--peso-forte);
+  flex-shrink: 0;
+}
+
+.alerta--info {
+  background: var(--cor-primaria-suave);
+  border-color: var(--cor-primaria);
+}
+
+.alerta--info::before {
+  content: "\2139";
+}
+
+.alerta--sucesso {
+  background: var(--cor-primaria-suave);
+  border-color: var(--cor-primaria-clara);
+}
+
+.alerta--sucesso::before {
+  content: "\2713";
+}
+
+.alerta--aviso {
+  background: var(--cor-secundaria-suave);
+  border-color: var(--cor-secundaria);
+}
+
+.alerta--aviso::before {
+  content: "!";
+}
+
+.alerta--erro {
+  background: var(--cor-erro-suave);
+  border-color: var(--cor-erro);
+}
+
+.alerta--erro::before {
+  content: "\2715";
+}
+
+/*
+  Alertas dinâmicos do formulário, revelados pela validação nativa
+*/
+.alerta-validacao {
+  display: none;
+}
+
+form:has(:user-invalid) .alerta--erro {
+  display: flex;
+}
+
+form:valid .alerta--sucesso {
+  display: flex;
+}
+
+/*
+  Modal (compromisso de proteção), aberto pelo seletor :target
+*/
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--esp-4);
+  background: var(--cor-sobreposicao);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transicao), visibility var(--transicao);
+}
+
+.modal:target {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-caixa {
+  background: var(--cor-fundo);
+  max-width: 32rem;
+  width: 100%;
+  padding: var(--esp-6);
+  border-radius: var(--raio);
+  border-top: 4px solid var(--cor-primaria-clara);
+  box-shadow: 0 10px 30px rgba(15, 61, 46, 0.3);
+  transform: translateY(1rem);
+  transition: transform var(--transicao);
+}
+
+.modal:target .modal-caixa {
+  transform: translateY(0);
+}
+
+.modal-caixa h2 {
+  margin-bottom: var(--esp-4);
+}
+
+.modal-fechar {
+  display: inline-block;
+  padding: var(--esp-2) var(--esp-5);
+  border-radius: var(--raio);
+  background: var(--cor-primaria);
+  color: var(--cor-fundo);
+  text-decoration: none;
+}
+
+.modal-fechar:hover {
+  background: var(--cor-primaria-escura);
+  color: var(--cor-fundo);
+  box-shadow: var(--sombra-botao);
 }
 
 /*
@@ -922,7 +1100,12 @@ footer > p:last-child {
   .menu-icone,
   .menu-icone::before,
   .menu-icone::after,
-  nav .tem-submenu > ul {
+  nav .tem-submenu > ul,
+  .badge,
+  .alerta,
+  .modal,
+  .modal-caixa,
+  .modal-fechar {
     transition: none;
   }
 }
