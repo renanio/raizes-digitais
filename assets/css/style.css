@@ -232,6 +232,44 @@ nav a[aria-current="page"] {
 }
 
 /*
+  Submenu (dropdown) do item Projetos
+*/
+nav .tem-submenu {
+  position: relative;
+}
+
+nav .tem-submenu > a::after {
+  content: "\25BE";
+  margin-left: var(--esp-1);
+}
+
+nav .tem-submenu > ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  flex-direction: column;
+  gap: 0;
+  width: max-content;
+  padding: var(--esp-1);
+  background: var(--cor-primaria-escura);
+  z-index: 20;
+}
+
+nav .tem-submenu:hover > ul,
+nav .tem-submenu:focus-within > ul {
+  display: flex;
+}
+
+nav .tem-submenu > ul a {
+  border-bottom: 0;
+}
+
+nav .tem-submenu > ul a:hover {
+  background: var(--cor-primaria);
+}
+
+/*
   CONTEÚDO PRINCIPAL
 */
 main {
