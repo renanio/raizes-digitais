@@ -185,7 +185,7 @@ h3 {
 */
 header {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--esp-1);
@@ -232,7 +232,93 @@ nav a[aria-current="page"] {
 }
 
 /*
-  Submenu (dropdown) do item Projetos
+  Menu sanfona (celular): o botao abre/fecha o nav
+*/
+.menu-toggle {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.menu-botao {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  padding: var(--esp-2) var(--esp-3);
+  border: 1px solid var(--cor-hover-invertido);
+  border-radius: var(--raio);
+  color: var(--cor-fundo);
+  font-weight: var(--peso-medio);
+  cursor: pointer;
+}
+
+.menu-toggle:focus-visible + .menu-botao {
+  outline: 3px solid var(--cor-secundaria);
+  outline-offset: 2px;
+}
+
+.menu-icone,
+.menu-icone::before,
+.menu-icone::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--cor-fundo);
+  transition: transform 0.3s;
+}
+
+.menu-icone {
+  position: relative;
+}
+
+.menu-icone::before,
+.menu-icone::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-icone::before {
+  top: -6px;
+}
+
+.menu-icone::after {
+  top: 6px;
+}
+
+.menu-toggle:checked + .menu-botao .menu-icone {
+  background: transparent;
+}
+
+.menu-toggle:checked + .menu-botao .menu-icone::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-toggle:checked + .menu-botao .menu-icone::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+nav {
+  flex-basis: 100%;
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: max-height 0.3s, visibility 0.3s;
+}
+
+.menu-toggle:checked ~ nav {
+  max-height: 30rem;
+  visibility: visible;
+}
+
+nav > ul {
+  flex-direction: column;
+}
+
+/*
+  Submenu do item Projetos
+  Celular: estatico e sempre visivel (o dropdown fica no @media 768px)
 */
 nav .tem-submenu {
   position: relative;
@@ -244,21 +330,11 @@ nav .tem-submenu > a::after {
 }
 
 nav .tem-submenu > ul {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
+  position: static;
   flex-direction: column;
   gap: 0;
-  width: max-content;
-  padding: var(--esp-1);
+  padding-left: var(--esp-4);
   background: var(--cor-primaria-escura);
-  z-index: 20;
-}
-
-nav .tem-submenu:hover > ul,
-nav .tem-submenu:focus-within > ul {
-  display: flex;
 }
 
 nav .tem-submenu > ul a {
@@ -312,6 +388,7 @@ main > h1 + p {
 main > section {
   padding: var(--esp-6) 0;
   border-top: 1px solid var(--cor-borda);
+  scroll-margin-top: 5rem;
 }
 
 main > section picture img {
@@ -506,8 +583,8 @@ select {
   max-width: 480px;
   margin-top: var(--esp-1);
   padding: var(--esp-2) var(--esp-3);
-  line-height: var(--altura-linha-titulo);
   font: inherit;
+  line-height: var(--altura-linha-titulo);
   color: var(--cor-texto);
   background: var(--cor-fundo);
   border: 1px solid var(--cor-borda-campo);
@@ -637,11 +714,6 @@ footer > p:last-child {
   1) 576px - celulares grandes e em modo paisagem
 */
 @media (min-width: 576px) {
-  header {
-    flex-direction: row;
-    gap: var(--esp-4);
-  }
-
   main {
     padding-top: var(--esp-8);
   }
@@ -667,6 +739,46 @@ footer > p:last-child {
   2) 768px - tablets
 */
 @media (min-width: 768px) {
+  /*
+    Menu em linha e dropdown do item Projetos
+  */
+  .menu-toggle,
+  .menu-botao {
+    display: none;
+  }
+
+  nav {
+    flex-basis: auto;
+    max-height: none;
+    overflow: visible;
+    visibility: visible;
+  }
+
+  nav > ul {
+    display: flex;
+    flex-direction: row;
+  }
+
+  nav .tem-submenu > ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    padding: var(--esp-1);
+    z-index: 20;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.5rem);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  }
+
+  nav .tem-submenu:hover > ul,
+  nav .tem-submenu:focus-within > ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
   /*
     Quem somos: texto em 6 colunas e imagem nas outras 6
   */
@@ -799,5 +911,18 @@ footer > p:last-child {
 
   #quem-somos picture {
     grid-column: 6 / 13;
+  }
+}
+
+/*
+  Respeita quem prefere menos animacao
+*/
+@media (prefers-reduced-motion: reduce) {
+  nav,
+  .menu-icone,
+  .menu-icone::before,
+  .menu-icone::after,
+  nav .tem-submenu > ul {
+    transition: none;
   }
 }
