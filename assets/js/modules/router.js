@@ -5,6 +5,7 @@
 */
 import { criarCardProjeto, criarAlerta } from './templates.js';
 import { ligarModal } from './modal.js';
+import { iniciarFormulario } from './formulario.js';
 
 const app = document.getElementById('app');
 const ROTA_PADRAO = 'inicio';
@@ -19,6 +20,7 @@ const TELAS = {
   },
   cadastro: {
     titulo: 'Faça parte | Instituto Raízes Digitais',
+    init: iniciarFormulario,
   },
 };
 

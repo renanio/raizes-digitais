@@ -1,12 +1,32 @@
 /*
-  Leitura e gravação de dados do cadastro no localStorage.
-  A ser implementado na próxima etapa.
+  Persistência do rascunho do cadastro no localStorage.
 */
+const CHAVE = 'raizes-digitais:cadastro';
 
-export function salvar() {
-  // Implementação futura.
+/* Gravar o rascunho como JSON */
+export function salvar(dados) {
+  try {
+    localStorage.setItem(CHAVE, JSON.stringify(dados));
+  } catch {
+    // localStorage pode estar indisponível (janela privada, cota cheia)
+  }
 }
 
+/* Recuperar o rascunho, devolvendo null quando ausente ou corrompido */
 export function recuperar() {
-  // Implementação futura.
+  try {
+    const bruto = localStorage.getItem(CHAVE);
+    return bruto ? JSON.parse(bruto) : null;
+  } catch {
+    return null;
+  }
+}
+
+/* Apagar o rascunho */
+export function remover() {
+  try {
+    localStorage.removeItem(CHAVE);
+  } catch {
+    // ignorar indisponibilidade do localStorage
+  }
 }
