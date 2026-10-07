@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Instituto Raízes Digitais: educação gratuita em programação e inteligência artificial.">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script type="module" src="assets/js/main.js"></script>
   <title>Instituto Raízes Digitais | Tecnologia que transforma futuros</title>
 </head>
 <body>
@@ -18,73 +19,21 @@
     <label for="menu-toggle" class="menu-botao"><span class="menu-icone" aria-hidden="true"></span>Menu</label>
     <nav aria-label="Menu principal">
       <ul>
-        <li><a href="index.html" aria-current="page">Início</a></li>
+        <li><a href="#/inicio">Início</a></li>
         <li class="tem-submenu">
-          <a href="projetos.html">Projetos</a>
+          <a href="#/projetos">Projetos</a>
           <ul>
-            <li><a href="projetos.html">Frentes de atuação</a></li>
-            <li><a href="projetos.html#como-participar">Como Participar</a></li>
-            <li><a href="projetos.html#protecao-menores">Proteção de Menores</a></li>
+            <li><a href="#/projetos/frentes">Frentes de atuação</a></li>
+            <li><a href="#/projetos/como-participar">Como participar</a></li>
+            <li><a href="#/projetos/protecao-menores">Proteção de menores</a></li>
           </ul>
         </li>
-        <li><a href="cadastro.html">Faça parte</a></li>
+        <li><a href="#/cadastro">Faça parte</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <h1>Instituto Raízes Digitais</h1>
-    <p>Tecnologia que transforma futuros</p>
-
-    <section id="quem-somos">
-      <h2>Quem somos</h2>
-      <p>O Instituto Raízes Digitais (IRD) é uma associação sem fins lucrativos que oferece educação gratuita em programação, desenvolvimento de sistemas e inteligência artificial para jovens a partir de 16 anos e adultos. Começamos em 2019, com aulas aos sábados em uma sala emprestada, e hoje mantemos turmas presenciais e online.</p>
-      <picture>
-        <source srcset="assets/img/laboratorio.webp" type="image/webp">
-        <img src="assets/img/laboratorio.jpg" alt="Laboratório do instituto com fileiras de computadores recondicionados prontos para as aulas" width="600" height="400" loading="lazy">
-      </picture>
-    </section>
-
-    <section id="missao-visao-valores">
-      <h2>Missão, visão e valores</h2>
-      <h3>Missão</h3>
-      <p>Democratizar o acesso à educação em tecnologia, preparando pessoas para o mercado digital e para o uso consciente da inteligência artificial.</p>
-      <h3>Visão</h3>
-      <p>Ser referência regional em formação tecnológica gratuita.</p>
-      <h3>Valores</h3>
-      <ul>
-        <li>Acesso para todos</li>
-        <li>Pensamento crítico</li>
-        <li>Ética na tecnologia</li>
-        <li>Aprender fazendo</li>
-        <li>Diversidade</li>
-        <li>Transparência</li>
-      </ul>
-    </section>
-
-    <section id="impacto">
-      <h2>Números de impacto</h2>
-      <ul>
-        <li><strong>1.200</strong> alunos formados desde 2019</li>
-        <li><strong>38%</strong> conseguiram emprego ou estágio na área</li>
-        <li><strong>45%</strong> dos alunos são mulheres</li>
-        <li><strong>60</strong> voluntários ativos</li>
-        <li><strong>150</strong> computadores recondicionados e doados</li>
-        <li><strong>12</strong> empresas parceiras</li>
-      </ul>
-    </section>
-
-    <section id="como-apoiar">
-      <h2>Como apoiar</h2>
-      <h3>Seja voluntário</h3>
-      <p>Dê aulas, faça mentoria ou revise projetos, a partir de 2 horas por semana.</p>
-      <h3>Seja doador</h3>
-      <p>Contribua com valor mensal ou pontual, ou doe computadores usados.</p>
-      <h3>Seja parceiro</h3>
-      <p>Empresas podem patrocinar turmas e oferecer vagas de estágio.</p>
-      <p><a href="cadastro.html">Quero fazer parte</a></p>
-    </section>
-  </main>
+  <main id="app" tabindex="-1"></main>
 
   <footer>
     <h2>Contato</h2>
@@ -95,5 +44,26 @@
     </address>
     <p>&copy; 2026 Instituto Raízes Digitais</p>
   </footer>
+
+  <template id="tpl-card-projeto">
+    <article>
+      <h3 data-campo="nome"></h3>
+      <p class="badges"></p>
+      <p data-campo="descricao"></p>
+      <ul>
+        <li>Público: <span data-campo="publico"></span></li>
+        <li>Duração: <span data-campo="duracao"></span></li>
+        <li>Formato: <span data-campo="formato"></span></li>
+      </ul>
+    </article>
+  </template>
+
+  <template id="tpl-badge">
+    <span class="badge"></span>
+  </template>
+
+  <template id="tpl-alerta">
+    <p class="alerta" role="status"><span><strong data-campo="titulo"></strong> <span data-campo="mensagem"></span></span></p>
+  </template>
 </body>
 </html>
