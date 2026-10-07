@@ -1,0 +1,68 @@
+[
+  {
+    "nome": "Primeiro Código",
+    "descricao": "Seu primeiro passo na programação. Em dois meses, você sai do zero e cria sua primeira página web.",
+    "publico": "a partir de 16 anos, iniciantes",
+    "duracao": "2 meses",
+    "formato": "presencial e online",
+    "badges": [
+      { "texto": "Presencial e online", "tipo": "hibrido" },
+      { "texto": "Iniciantes", "tipo": null }
+    ]
+  },
+  {
+    "nome": "Dev do Zero",
+    "descricao": "Do HTML ao projeto no portfólio. Uma trilha completa para quem quer trabalhar com desenvolvimento.",
+    "publico": "quem concluiu o Primeiro Código",
+    "duracao": "6 meses",
+    "formato": "presencial e online",
+    "badges": [
+      { "texto": "Presencial e online", "tipo": "hibrido" },
+      { "texto": "Intermediário", "tipo": null }
+    ]
+  },
+  {
+    "nome": "IA para Todos",
+    "descricao": "Entenda a inteligência artificial, use a seu favor e aprenda a reconhecer quando ela é usada contra você.",
+    "publico": "aberto a todos",
+    "duracao": "1 mês",
+    "formato": "online",
+    "badges": [
+      { "texto": "Online", "tipo": "online" },
+      { "texto": "Aberto a todos", "tipo": null }
+    ]
+  },
+  {
+    "nome": "Elas no Código",
+    "descricao": "Um espaço feito por mulheres e para mulheres que querem entrar na tecnologia.",
+    "publico": "mulheres a partir de 16 anos",
+    "duracao": "4 meses",
+    "formato": "presencial",
+    "badges": [
+      { "texto": "Presencial", "tipo": "presencial" },
+      { "texto": "Exclusivo para mulheres", "tipo": null }
+    ]
+  },
+  {
+    "nome": "Rota Tech",
+    "descricao": "Qual carreira seguir em tecnologia? Conversas com profissionais para ajudar a decidir o futuro.",
+    "publico": "estudantes do ensino médio",
+    "duracao": "encontros mensais",
+    "formato": "presencial",
+    "badges": [
+      { "texto": "Presencial", "tipo": "presencial" },
+      { "texto": "Ensino médio", "tipo": null }
+    ]
+  },
+  {
+    "nome": "Conecta Comunidade",
+    "descricao": "Não tem computador? Nosso laboratório está aberto para você estudar e praticar.",
+    "publico": "alunos sem computador em casa",
+    "duracao": "contínuo",
+    "formato": "presencial",
+    "badges": [
+      { "texto": "Presencial", "tipo": "presencial" },
+      { "texto": "Acesso contínuo", "tipo": null }
+    ]
+  }
+]
