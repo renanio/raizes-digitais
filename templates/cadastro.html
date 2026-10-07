@@ -1,7 +1,7 @@
 <h1 tabindex="-1">Faça parte</h1>
 <p>Preencha o formulário para se inscrever como aluno ou apoiar o Instituto Raízes Digitais como voluntário, doador ou empresa parceira. Campos marcados com * são obrigatórios.</p>
 
-<form action="#" method="post">
+<form action="#" method="post" novalidate>
   <p class="alerta alerta--info"><span><strong>Informação:</strong> todos os cursos do instituto são gratuitos. Seus dados são usados apenas para contato sobre turmas e ações voluntárias.</span></p>
 
   <fieldset>
@@ -150,8 +150,7 @@
     </p>
   </fieldset>
 
-  <p class="alerta alerta--erro alerta-validacao" role="status"><span><strong>Verifique:</strong> há campos preenchidos de forma incorreta. Corrija os campos destacados em vermelho.</span></p>
-  <p class="alerta alerta--sucesso alerta-validacao" role="status"><span><strong>Tudo certo:</strong> os dados estão completos. Você já pode enviar seu cadastro.</span></p>
+  <div id="form-feedback" aria-live="polite"></div>
   <p>
     <button type="submit">Enviar cadastro</button>
     <button type="reset">Limpar</button>

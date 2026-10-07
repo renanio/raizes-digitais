@@ -741,17 +741,9 @@ footer > p:last-child {
   content: "\2715";
 }
 
-/* Alertas revelados pela validação nativa do formulário */
-.alerta-validacao {
+/* Ocultar a área de feedback do formulário enquanto estiver vazia */
+#form-feedback:empty {
   display: none;
-}
-
-form:has(:user-invalid) .alerta--erro {
-  display: flex;
-}
-
-form:valid .alerta--sucesso {
-  display: flex;
 }
 
 /* Modal em dialog ocupando a tela para centralizar a caixa e fechar ao clicar no fundo */
