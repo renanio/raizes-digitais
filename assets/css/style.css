@@ -1,42 +1,18 @@
-/*
-  Instituto Raízes Digitais - folha de estilos
-*/
+/* Instituto Raízes Digitais - folha de estilos */
 
-/*
-  DESIGN SYSTEM (variáveis CSS)
-*/
+/* Design system */
 :root {
-  /*
-    Cores primárias (identidade: verde)
-    primaria        botões, links, destaques
-    primaria-escura cabeçalho, rodapé, títulos
-    primaria-clara  bordas de destaque, link ativo
-    primaria-suave  fundos de blocos e cards
-  */
+  /* Cores primárias: identidade verde */
   --cor-primaria: #1d7a55;
   --cor-primaria-escura: #0f3d2e;
   --cor-primaria-clara: #3fbf7f;
   --cor-primaria-suave: #e6f4ec;
 
-  /*
-    Cores secundárias (apoio: bege)
-    secundaria       foco do teclado, avisos
-    secundaria-suave fundo de mensagens de aviso
-  */
+  /* Cores secundárias: foco do teclado e avisos */
   --cor-secundaria: #c8a46a;
   --cor-secundaria-suave: #faf5ec;
 
-  /*
-    Cores neutras
-    texto            texto principal
-    texto-suave      textos de apoio
-    texto-invertido  texto sobre fundo escuro
-    borda            divisórias
-    borda-campo      bordas de campos de formulário
-    fundo            fundo das páginas e campos
-    linha-invertida  divisória no rodapé
-    hover-invertido  hover no menu
-  */
+  /* Cores neutras: texto, bordas e fundos */
   --cor-texto: #1f2a24;
   --cor-texto-suave: #4f5d55;
   --cor-texto-invertido: #d9e7df;
@@ -46,17 +22,11 @@
   --cor-linha-invertida: rgba(255, 255, 255, 0.15);
   --cor-hover-invertido: rgba(255, 255, 255, 0.4);
 
-  /*
-    Cor de estado
-    erro        campos inválidos
-    erro-suave  fundo dos alertas de erro
-  */
+  /* Cores de estado: erro */
   --cor-erro: #b3261e;
   --cor-erro-suave: #fbe9e7;
 
-  /*
-    Tipografia
-  */
+  /* Tipografia */
   --fonte-base: "Segoe UI", Roboto, Arial, sans-serif;
   --peso-normal: 400;
   --peso-medio: 600;
@@ -64,15 +34,7 @@
   --altura-linha-texto: 1.65;
   --altura-linha-titulo: 1.25;
 
-  /*
-    Escala modular de razão 1.25 a partir de 1.0625rem (17px)
-    pequeno   13,6px - rodapé, detalhes dos cards
-    base      17px   - corpo do texto
-    medio     21,2px - h3, subtítulos, legendas
-    grande    26,6px - h2
-    destaque  33,2px - números de impacto
-    titulo    até 41,5px - h1
-  */
+  /* Escala tipográfica modular de razão 1.25 sobre 17px */
   --texto-pequeno: 0.85rem;
   --texto-base: 1.0625rem;
   --texto-medio: 1.328rem;
@@ -80,11 +42,7 @@
   --texto-destaque: 2.075rem;
   --texto-titulo: clamp(2rem, 5vw, 2.594rem);
 
-  /*
-    Espaçamentos (escala modular de base 4px)
-    1=4px   2=8px   3=12px  4=16px
-    5=24px  6=32px  7=40px  8=48px
-  */
+  /* Espaçamentos em escala de base 4px */
   --esp-1: 0.25rem;
   --esp-2: 0.5rem;
   --esp-3: 0.75rem;
@@ -94,35 +52,22 @@
   --esp-7: 2.5rem;
   --esp-8: 3rem;
 
-  /*
-    Outras medidas
-  */
+  /* Outras medidas */
   --raio: 3px;
   --largura: 1000px;
   --leitura: 68ch;
 
-  /*
-    Efeitos e sobreposição
-    transicao     duração/curva das transições de interface
-    sombra-botao  realce ao passar o mouse nos botões
-    sobreposicao  véu escuro atrás do modal
-  */
+  /* Efeitos e sobreposição */
   --transicao: 0.25s ease;
   --sombra-botao: 0 4px 12px rgba(15, 61, 46, 0.3);
   --cor-sobreposicao: rgba(15, 61, 46, 0.6);
 
-  /*
-    Grid
-    colunas  sistema de 12 colunas
-    gutter   espaço entre colunas
-  */
+  /* Grid de 12 colunas */
   --colunas: 12;
   --gutter: var(--esp-5);
 }
 
-/*
-  BASE
-*/
+/* Base */
 *,
 *::before,
 *::after {
@@ -170,6 +115,11 @@ select:focus-visible {
   outline-offset: 2px;
 }
 
+/* Ocultar contorno do h1 focado via JavaScript na troca de rota para leitores de tela */
+h1[tabindex="-1"]:focus {
+  outline: none;
+}
+
 h1,
 h2,
 h3 {
@@ -192,9 +142,7 @@ h3 {
   margin: var(--esp-5) 0 var(--esp-1);
 }
 
-/*
-  CABEÇALHO E NAVEGAÇÃO
-*/
+/* Cabeçalho e navegação */
 header {
   display: flex;
   flex-wrap: wrap;
@@ -243,9 +191,7 @@ nav a[aria-current="page"] {
   border-bottom-color: var(--cor-primaria-clara);
 }
 
-/*
-  Menu sanfona (celular): o botao abre/fecha o nav
-*/
+/* Menu sanfona no celular, controlado por checkbox sem JavaScript */
 .menu-toggle {
   position: absolute;
   opacity: 0;
@@ -328,10 +274,7 @@ nav > ul {
   flex-direction: column;
 }
 
-/*
-  Submenu do item Projetos
-  Celular: estatico e sempre visivel (o dropdown fica no @media 768px)
-*/
+/* Submenu do Projetos estático no celular, vira dropdown em 768px */
 nav .tem-submenu {
   position: relative;
 }
@@ -357,20 +300,14 @@ nav .tem-submenu > ul a:hover {
   background: var(--cor-primaria);
 }
 
-/*
-  CONTEÚDO PRINCIPAL
-*/
+/* Conteúdo principal */
 main {
   max-width: calc(var(--largura) + 2 * var(--esp-4));
   margin: 0 auto;
   padding: var(--esp-6) var(--esp-4) var(--esp-8);
 }
 
-/*
-  GRID DE 12 COLUNAS (layout macro)
-  O main e os blocos com colunas usam a mesma grade de 12
-  colunas. Por padrão (celular), cada filho ocupa as 12.
-*/
+/* Grade de 12 colunas compartilhada pelo main e pelos blocos de seção */
 main,
 #quem-somos,
 #missao-visao-valores,
@@ -511,9 +448,7 @@ main h3 + p {
   margin: var(--esp-7) 0 0;
 }
 
-/*
-  PROJETOS
-*/
+/* Projetos */
 #frentes {
   row-gap: var(--esp-6);
 }
@@ -554,9 +489,7 @@ main h3 + p {
   margin-top: var(--esp-2);
 }
 
-/*
-  FORMULÁRIO DE CADASTRO
-*/
+/* Formulário de cadastro */
 form {
   display: grid;
   gap: var(--esp-7);
@@ -672,9 +605,13 @@ button[type="reset"]:hover {
   background: var(--cor-primaria-suave);
 }
 
-/*
-  RODAPÉ
-*/
+/* Rodapé */
+
+/* Ocultar rodapé enquanto o #app está vazio para não exibi-lo no meio durante o carregamento da SPA */
+#app:empty ~ footer {
+  display: none;
+}
+
 footer {
   padding: var(--esp-7) max(var(--esp-4), calc((100% - var(--largura)) / 2));
   background: var(--cor-primaria-escura);
@@ -710,13 +647,9 @@ footer > p:last-child {
   font-size: var(--texto-pequeno);
 }
 
-/*
-  COMPONENTES DE FEEDBACK
-*/
+/* Componentes de feedback */
 
-/*
-  Badges (etiquetas dos projetos)
-*/
+/* Badges dos projetos */
 .badges {
   display: flex;
   flex-wrap: wrap;
@@ -754,9 +687,7 @@ footer > p:last-child {
   color: var(--cor-fundo);
 }
 
-/*
-  Alertas (mensagens de feedback, principalmente no formulário)
-*/
+/* Alertas */
 .alerta {
   display: flex;
   gap: var(--esp-3);
@@ -810,9 +741,7 @@ footer > p:last-child {
   content: "\2715";
 }
 
-/*
-  Alertas dinâmicos do formulário, revelados pela validação nativa
-*/
+/* Alertas revelados pela validação nativa do formulário */
 .alerta-validacao {
   display: none;
 }
@@ -825,55 +754,72 @@ form:valid .alerta--sucesso {
   display: flex;
 }
 
-/*
-  Modal (compromisso de proteção), aberto pelo seletor :target
-*/
+/* Modal em dialog ocupando a tela para centralizar a caixa e fechar ao clicar no fundo */
 .modal {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: var(--esp-4);
+  border: 0;
+  background: transparent;
+  color: var(--cor-texto);
+  overflow: auto;
+}
+
+.modal[open] {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--esp-4);
-  background: var(--cor-sobreposicao);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--transicao), visibility var(--transicao);
 }
 
-.modal:target {
-  opacity: 1;
-  visibility: visible;
+.modal::backdrop {
+  background: var(--cor-sobreposicao);
 }
 
 .modal-caixa {
-  background: var(--cor-fundo);
-  max-width: 32rem;
   width: 100%;
+  max-width: 32rem;
+  background: var(--cor-fundo);
   padding: var(--esp-6);
   border-radius: var(--raio);
   border-top: 4px solid var(--cor-primaria-clara);
   box-shadow: 0 10px 30px rgba(15, 61, 46, 0.3);
-  transform: translateY(1rem);
-  transition: transform var(--transicao);
-}
-
-.modal:target .modal-caixa {
-  transform: translateY(0);
 }
 
 .modal-caixa h2 {
   margin-bottom: var(--esp-4);
 }
 
+.link-modal {
+  width: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cor-primaria);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
+}
+
+.link-modal:hover {
+  color: var(--cor-primaria-escura);
+}
+
 .modal-fechar {
-  display: inline-block;
+  width: auto;
+  font: inherit;
+  font-weight: var(--peso-medio);
   padding: var(--esp-2) var(--esp-5);
+  border: 0;
   border-radius: var(--raio);
   background: var(--cor-primaria);
   color: var(--cor-fundo);
-  text-decoration: none;
+  cursor: pointer;
 }
 
 .modal-fechar:hover {
@@ -882,15 +828,9 @@ form:valid .alerta--sucesso {
   box-shadow: var(--sombra-botao);
 }
 
-/*
-  BREAKPOINTS (mobile-first)
-  A base acima atende celulares pequenos (abaixo de 576px).
-  Cada @media acrescenta ajustes a partir da largura indicada.
-*/
+/* Breakpoints mobile-first */
 
-/*
-  1) 576px - celulares grandes e em modo paisagem
-*/
+/* 576px - celulares grandes e paisagem */
 @media (min-width: 576px) {
   main {
     padding-top: var(--esp-8);
@@ -913,13 +853,9 @@ form:valid .alerta--sucesso {
   }
 }
 
-/*
-  2) 768px - tablets
-*/
+/* 768px - tablets */
 @media (min-width: 768px) {
-  /*
-    Menu em linha e dropdown do item Projetos
-  */
+  /* Menu em linha e submenu suspenso */
   .menu-toggle,
   .menu-botao {
     display: none;
@@ -957,9 +893,7 @@ form:valid .alerta--sucesso {
     transform: translateY(0);
   }
 
-  /*
-    Quem somos: texto em 6 colunas e imagem nas outras 6
-  */
+  /* Quem somos: texto em 6 colunas, imagem nas outras 6 */
   #quem-somos {
     grid-template-rows: auto 1fr;
     column-gap: var(--esp-7);
@@ -991,9 +925,7 @@ form:valid .alerta--sucesso {
     margin-top: 0;
   }
 
-  /*
-    Missão e Visão lado a lado (6 + 6 colunas)
-  */
+  /* Missão e Visão lado a lado, 6 + 6 colunas */
   #missao-visao-valores h3:nth-of-type(1),
   #missao-visao-valores h3:nth-of-type(2) {
     grid-row: 2;
@@ -1016,16 +948,12 @@ form:valid .alerta--sucesso {
     grid-column: 7 / 13;
   }
 
-  /*
-    Números de impacto: 3 por linha (4 colunas cada)
-  */
+  /* Números de impacto, 3 por linha */
   #impacto li {
     grid-column: span 4;
   }
 
-  /*
-    Como apoiar: 3 blocos de 4 colunas
-  */
+  /* Como apoiar, 3 blocos de 4 colunas */
   #como-apoiar h3 {
     grid-row: 2;
     margin-top: 0;
@@ -1051,9 +979,7 @@ form:valid .alerta--sucesso {
   }
 }
 
-/*
-  3) 992px - notebooks
-*/
+/* 992px - notebooks */
 @media (min-width: 992px) {
   :root {
     --gutter: var(--esp-6);
@@ -1064,18 +990,14 @@ form:valid .alerta--sucesso {
   }
 }
 
-/*
-  4) 1200px - desktops
-*/
+/* 1200px - desktops */
 @media (min-width: 1200px) {
   :root {
     --largura: 1080px;
   }
 }
 
-/*
-  5) 1400px - desktops panorâmicos
-*/
+/* 1400px - desktops panorâmicos */
 @media (min-width: 1400px) {
   :root {
     --largura: 1140px;
@@ -1092,9 +1014,7 @@ form:valid .alerta--sucesso {
   }
 }
 
-/*
-  Respeita quem prefere menos animacao
-*/
+/* Desativar transições para quem prefere menos animação */
 @media (prefers-reduced-motion: reduce) {
   nav,
   .menu-icone,
